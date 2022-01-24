@@ -12,6 +12,6 @@ export class CreateClientController {
             password,
         });
 
-        return response.json(result);
+        response.json(result);
     }
 }
