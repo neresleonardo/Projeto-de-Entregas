@@ -33,6 +33,6 @@ export class CreateClientUseCase {
             },
         })
         //retornando client
-        return client
+        return client // retornando os dados
     }
 }
