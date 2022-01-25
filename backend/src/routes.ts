@@ -8,6 +8,8 @@ import { FindAllDeliveriesController } from "./modules/clients/userCases/deliver
 import { CreateDeliveryController } from "./modules/deliveries/userCases/createDelivery/CreateDeliveryController";
 import { FindAllWithoutEndDateController } from "./modules/deliveries/userCases/findAllWithoutEndDate/FindAllWithoutEndDateController";
 import { UpdateDeliverymanController } from "./modules/deliveries/userCases/updateDelivery/useCases/UpdateDeliverymanController";
+import { UpdateEndDateController } from "./modules/deliveries/userCases/updateEndDate/UpdateEndDateController";
+import { UpdateEndDateUseCase } from "./modules/deliveries/userCases/updateEndDate/UpdateEndDateUseCase";
 import { CreateDeliverymanController } from "./modules/deliveryman/createDeliveryman/CreateDeliverymanController";
 import { FinFindAllDeliveriesDeliverymanController } from "./modules/deliveryman/userCases/findAllDeliveries/FindAllDeliveriesDeliverymanController";
 const routes = Router();
@@ -30,6 +32,8 @@ const findAllWithoutEndDateController = new FindAllWithoutEndDateController();
 const updateDeliverymanController = new UpdateDeliverymanController();
 const findAllDeliveriesController = new FindAllDeliveriesController();
 const finFindAllDeliveriesDeliverymanController = new FinFindAllDeliveriesDeliverymanController()
+// Atualizando chegada do delivery (end_date)
+const updateEndDateController = new UpdateEndDateController();
 ////////////////////////////////////////////////////////////////
 
 //////////////////////POST GET PUT DELETE ///////////////////////
@@ -49,6 +53,8 @@ routes.put("/delivery/updateDeliveryman/:id", ensureAuthenticateDeliveryman,upda
 routes.get("/client/deliveries",ensureAuthenticateClient, findAllDeliveriesController.handle)
 // Buscando entregas do entregador
 routes.get("/deliveryman/deliveries", ensureAuthenticateDeliveryman, finFindAllDeliveriesDeliverymanController.handle)
+// Atualizando chegada do pedido
+routes.put("/delivery/updateEndDate/:id", ensureAuthenticateDeliveryman, updateEndDateController.handle)
 //////////////////////////////////////////////////////////////////////////
 
 export { routes };
